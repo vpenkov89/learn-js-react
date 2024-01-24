@@ -1,4 +1,4 @@
-:root {
+ :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -7,6 +7,10 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #edc7b7;
+}
+
+body {
+  margin: 0;
 }
 
 .main {
@@ -19,24 +23,3 @@
   padding: 1rem 2rem;
 }
 
-h2 {
-  text-transform: uppercase;
-  color: #ac3b61;
-  margin-bottom: 1rem;
-}
-
-h3 {
-  color: #ac3b61;
-  margin: 0 auto;
-}
-
-ul {
-  margin-top: 0;
-}
-
-p {
-  margin-left: 0.5rem;
-  margin-top: 0.1rem;
-  font-style: italic;
-  color: darkslategray;
-}
