@@ -1,12 +1,12 @@
-.root {
-    background-color: #eee2dc;
-    color: gray;
-    padding-bottom: 0.4rem;
+@import "../../styles/theme.scss";
 
-    .footer_body {
-        display: flex;
-        justify-content: center;
-        align-content: center;
-    }
+.root {
+    background-color: $bg-primary;
+    color: gray;
+    padding: 3px 0 3px 0;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    border-top: solid 1px $border;
 }
 

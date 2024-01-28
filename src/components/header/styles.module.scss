@@ -1,13 +1,15 @@
+@import "../../styles/theme.scss";
+
 .root {
   height: 75px;
   padding: 60 0;
-  background-color: #eee2dc;
+  background-color: $bg-primary;
   margin-bottom: 20px;
 
   .main_header {
     font-size: 48px;
     font-weight: 700;
-    color: #ac3b61;
+    color: $header;
     font-family: Helvetica, Arial, sans-serif;
     padding-left: 40px;
   }

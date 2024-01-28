@@ -5,13 +5,13 @@ type ReviewProps = {
   review: Review;
 };
 
-export const ReviewCard: React.FC<ReviewProps> = ({ review }: ReviewProps) => {
+export const ReviewView: React.FC<ReviewProps> = ({ review }) => {
   return (
-    <li className={styles.root}>
+    <div className={styles.root}>
       <div>
         <b>★{review.rating}</b> {review.user}
       </div>
       <p>{review.text}</p>
-    </li>
+    </div>
   );
 };
