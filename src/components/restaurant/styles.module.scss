@@ -1,0 +1,16 @@
+@import "../../styles/theme.scss";
+
+.root {
+  h2 {
+    text-transform: uppercase;
+    color: $header;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  h3 {
+    color: $header;
+    margin: 0 0 5px 25px;
+  }
+
+}

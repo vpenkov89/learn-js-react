@@ -1,4 +1,4 @@
-export interface Menu {
+export interface Dish {
   id: string;
   name: string;
   price: number;
@@ -15,7 +15,7 @@ export interface Review {
 export interface Restaurant {
   id: string;
   name: string;
-  menu: Menu[];
+  menu: Dish[];
   reviews: Review[];
 }
 
