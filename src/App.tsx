@@ -1,4 +1,4 @@
-import { Layout } from "./components/layout";
+import { Layout } from "./components/layout/layout";
 import { RestaurantsView } from "./components/restaurants/restaurants";
 import { restaurants } from "./constants/mock";
 import styles from "./styles/main.module.scss";

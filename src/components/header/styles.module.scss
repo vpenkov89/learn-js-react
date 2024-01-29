@@ -1,8 +1,6 @@
 @import "../../styles/theme.scss";
 
 .root {
-  height: 75px;
-  padding: 60 0;
   background-color: $bg-primary;
   margin-bottom: 20px;
 
@@ -12,5 +10,6 @@
     color: $header;
     font-family: Helvetica, Arial, sans-serif;
     padding-left: 40px;
+    text-align: center;
   }
 }

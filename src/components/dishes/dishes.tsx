@@ -10,7 +10,7 @@ export const DishesView: React.FC<DishesProps> = ({ dishes }) => {
   return (
     <ul className={styles.root}>
       {dishes.map((dish: Dish) => (
-        <li>
+        <li key={dish.id}>
           <DishView dish={dish} />
         </li>
       ))}

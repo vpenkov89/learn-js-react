@@ -6,6 +6,7 @@ specifiers:
   '@typescript-eslint/eslint-plugin': ^6.14.0
   '@typescript-eslint/parser': ^6.14.0
   '@vitejs/plugin-react-swc': ^3.5.0
+  classnames: ^2.5.1
   eslint: ^8.55.0
   eslint-plugin-react-hooks: ^4.6.0
   eslint-plugin-react-refresh: ^0.4.5
@@ -16,6 +17,7 @@ specifiers:
   vite: ^5.0.8
 
 dependencies:
+  classnames: 2.5.1
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
 
@@ -840,6 +842,10 @@ packages:
     optionalDependencies:
       fsevents: 2.3.3
     dev: true
+
+  /classnames/2.5.1:
+    resolution: {integrity: sha512-saHYOzhIQs6wy2sVxTM6bUDsQO4F50V9RQ22qBpEdCW+I+/Wmke2HOl6lS6dTpdxVhb88/I6+Hs+438c3lfUow==}
+    dev: false
 
   /color-convert/2.0.1:
     resolution: {integrity: sha512-RRECPsj7iu/xb5oKYcsFHSppFNnsj/52OVTRKb4zP5onXwVF3zVmmToNcOfGC+CRDpfK/U584fMg38ZHCaElKQ==}

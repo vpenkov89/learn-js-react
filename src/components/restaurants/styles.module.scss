@@ -1,0 +1,29 @@
+@import "../../styles/theme.scss";
+
+.root {
+
+  .select_button {
+    background-color: $btn-element;
+    color: $bg-primary;
+    border: none;
+    border-radius: 4px;
+    padding: 7px 10px;
+    font-size: large;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $btn-element-hover;
+      transition: 200ms;
+    }
+
+    &.selected {
+      background-color: $btn-element-selected;
+    }
+  }
+
+  .restaurants_buttons {
+    display: flex;
+    column-gap: 0.3em;
+    margin-bottom: 2em;
+  }
+}

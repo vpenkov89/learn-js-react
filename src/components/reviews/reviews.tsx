@@ -9,9 +9,9 @@ type ReviewsProps = {
 export const ReviewsView: React.FC<ReviewsProps> = ({ reviews }) => {
   return (
     <ul className={styles.root}>
-      {reviews.map((reviews: Review) => (
-        <li>
-          <ReviewView review={reviews} />
+      {reviews.map((review: Review) => (
+        <li key={review.id}>
+          <ReviewView review={review} />
         </li>
       ))}
     </ul>
