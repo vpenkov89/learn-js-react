@@ -6,7 +6,7 @@
   font-weight: 400;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
+  -webkit-font-smoothing: subpixel-antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: $bg-secondary;
 }
@@ -16,11 +16,10 @@ body {
 }
 
 .main {
-  display: flex;
   max-width: 50%;
-  flex-direction: column;
   margin: 0 auto;
   background-color: $bg-primary;
   color: $text-primary;
   padding: 1rem 2rem;
+  border-radius: 0.7em;
 }

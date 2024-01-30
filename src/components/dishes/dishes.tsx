@@ -1,17 +1,17 @@
-import { Dish } from "../../constants/mock";
-import { DishView } from "../dish/dish";
+import { IDish } from "../../constants/mock";
+import { Dish } from "../dish/dish";
 import styles from "./styles.module.scss";
 
 type DishesProps = {
-  dishes: Dish[];
+  dishes: IDish[];
 };
 
-export const DishesView: React.FC<DishesProps> = ({ dishes }) => {
+export const Dishes: React.FC<DishesProps> = ({ dishes }) => {
   return (
     <ul className={styles.root}>
-      {dishes.map((dish: Dish) => (
-        <li>
-          <DishView dish={dish} />
+      {dishes.map((dish: IDish) => (
+        <li key={dish.id}>
+          <Dish dish={dish} />
         </li>
       ))}
     </ul>

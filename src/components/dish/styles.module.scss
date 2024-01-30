@@ -1,9 +1,17 @@
 @import "../../styles/theme.scss";
 
 .root {
+  display: flex;
+  width: 20em;
+  justify-content: space-between;
+  column-gap: 1.3em;
+  border-bottom: solid 1px $border;
+  margin-bottom: 0.5em;
+
   p {
-    margin-left: 0.5rem;
-    margin-top: 0.1rem;
+    margin-left: 0.5em;
+    margin-top: 0.1em;
+    margin-bottom: 0.5em;
     font-style: italic;
     color: darkslategray;
   }

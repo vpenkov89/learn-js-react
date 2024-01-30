@@ -1,17 +1,17 @@
-import { Review } from "../../constants/mock";
-import { ReviewView } from "../review/review";
+import { IReview } from "../../constants/mock";
+import { Review } from "../review/review";
 import styles from "./styles.module.scss";
 
 type ReviewsProps = {
-  reviews: Review[];
+  reviews: IReview[];
 };
 
-export const ReviewsView: React.FC<ReviewsProps> = ({ reviews }) => {
+export const Reviews: React.FC<ReviewsProps> = ({ reviews }) => {
   return (
     <ul className={styles.root}>
-      {reviews.map((reviews: Review) => (
-        <li>
-          <ReviewView review={reviews} />
+      {reviews.map((review: IReview) => (
+        <li key={review.id}>
+          <Review review={review} />
         </li>
       ))}
     </ul>

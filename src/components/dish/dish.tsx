@@ -1,17 +1,26 @@
-import { Dish } from "../../constants/mock";
+import { useState } from "react";
+import { IDish } from "../../constants/mock";
+import { Counter } from "../counter/counter";
 import styles from "./styles.module.scss";
 
 type DishProps = {
-  dish: Dish;
+  dish: IDish;
 };
 
-export const DishView: React.FC<DishProps> = ({ dish }) => {
+export const Dish: React.FC<DishProps> = ({ dish }) => {
+  const [count, setCount] = useState(0);
+
   return (
     <div className={styles.root}>
       <div>
-        {dish.name} - <b>${dish.price}</b>
+        <div>
+          {dish.name} - <b>${dish.price}</b>
+        </div>
+        <p>
+          <u>Ingridients:</u> {dish.ingredients.join(", ")}
+        </p>
       </div>
-      <p>Ingridients: {dish.ingredients.join(", ")}</p>
+      <Counter count={count} countChange={setCount}></Counter>
     </div>
   );
 };
