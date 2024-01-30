@@ -8,7 +8,7 @@ type CounterProps = {
   countChange: (count: number) => void;
 };
 
-export const CounterView: React.FC<CounterProps> = ({
+export const Counter: React.FC<CounterProps> = ({
   className,
   count,
   countChange,

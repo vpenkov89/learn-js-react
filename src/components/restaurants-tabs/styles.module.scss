@@ -2,6 +2,10 @@
 
 .root {
 
+  display: flex;
+  column-gap: 0.3em;
+  margin-bottom: 2em;
+
   .select_button {
     background-color: $btn-element;
     color: $bg-primary;
@@ -19,11 +23,5 @@
     &.selected {
       background-color: $btn-element-selected;
     }
-  }
-
-  .restaurants_buttons {
-    display: flex;
-    column-gap: 0.3em;
-    margin-bottom: 2em;
   }
 }

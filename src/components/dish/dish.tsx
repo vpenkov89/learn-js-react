@@ -1,17 +1,14 @@
 import { useState } from "react";
-import { Dish } from "../../constants/mock";
-import { CounterView } from "../counter/counter";
+import { IDish } from "../../constants/mock";
+import { Counter } from "../counter/counter";
 import styles from "./styles.module.scss";
 
 type DishProps = {
-  dish: Dish;
+  dish: IDish;
 };
 
-export const DishView: React.FC<DishProps> = ({ dish }) => {
+export const Dish: React.FC<DishProps> = ({ dish }) => {
   const [count, setCount] = useState(0);
-  const updateCount = (_count: number) => {
-    setCount(_count);
-  };
 
   return (
     <div className={styles.root}>
@@ -23,8 +20,7 @@ export const DishView: React.FC<DishProps> = ({ dish }) => {
           <u>Ingridients:</u> {dish.ingredients.join(", ")}
         </p>
       </div>
-      {/* TODO возможно обновлять count через колбэк - плохое решение. Уточнить. */}
-      <CounterView count={count} countChange={updateCount}></CounterView>
+      <Counter count={count} countChange={setCount}></Counter>
     </div>
   );
 };

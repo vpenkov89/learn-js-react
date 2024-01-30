@@ -1,11 +1,11 @@
-import { Review } from "../../constants/mock";
+import { IReview } from "../../constants/mock";
 import styles from "./styles.module.scss";
 
 type ReviewProps = {
-  review: Review;
+  review: IReview;
 };
 
-export const ReviewView: React.FC<ReviewProps> = ({ review }) => {
+export const Review: React.FC<ReviewProps> = ({ review }) => {
   return (
     <div className={styles.root}>
       <div>
