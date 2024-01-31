@@ -15,6 +15,27 @@ body {
   margin: 0;
 }
 
+input {
+    font-size: 1rem;
+    color: #4b5563;
+    background: #ffffff;
+    padding: 0.5rem 0.5rem;
+    border: 1px solid #d1d5db;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    border-radius: 6px;
+}
+
+input:enabled:hover {
+  border-color: $input-border;
+}
+
+input:enabled:focus {
+  outline: 0 none;
+  outline-offset: 0;
+  box-shadow: 0 0 0 0.2rem $input-border-shadow;
+  border-color: $input-border;
+}
+
 .main {
   max-width: 50%;
   margin: 0 auto;
@@ -22,4 +43,17 @@ body {
   color: $text-primary;
   padding: 1rem 2rem;
   border-radius: 0.7em;
+}
+
+.form_group {
+  margin-bottom: 0.5em;
+  display: flex;
+
+  label {
+    padding-right: 1em;
+    width: 25%
+  }
+  input{
+    width: 75%;
+  }
 }

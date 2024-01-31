@@ -3,11 +3,11 @@ import { IRestaurant } from "../../constants/mock";
 import { Restaurant } from "../restaurant/restaurant";
 import { RestaurantsTabs } from "../restaurants-tabs/restaurants-tabs";
 
-type RestaurantsProps = {
+type RestaurantsPageProps = {
   restaurants: IRestaurant[];
 };
 
-export const RestaurantsPage: React.FC<RestaurantsProps> = ({
+export const RestaurantsPage: React.FC<RestaurantsPageProps> = ({
   restaurants,
 }) => {
   const [selectedRestaurant, setSelectedRestaurant] = useState(restaurants[0]);

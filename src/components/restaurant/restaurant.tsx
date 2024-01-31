@@ -1,5 +1,6 @@
 import { IRestaurant } from "../../constants/mock";
 import { Dishes } from "../dishes/dishes";
+import { ReviewForm } from "../review-form/review-form";
 import { Reviews } from "../reviews/reviews";
 import styles from "./styles.module.scss";
 
@@ -15,6 +16,7 @@ export const Restaurant: React.FC<RestaurantProps> = ({ restaurant }) => {
       <Dishes dishes={restaurant.menu}></Dishes>
       <h3>Reviews</h3>
       <Reviews reviews={restaurant.reviews}></Reviews>
+      <ReviewForm className={styles.review_section}/>
       <hr />
     </div>
   );

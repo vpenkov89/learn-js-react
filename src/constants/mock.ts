@@ -4,14 +4,12 @@ export interface IDish {
   price: number;
   ingredients: string[];
 }
-
 export interface IReview {
-  id: string;
+  id?: string;
   user: string;
   text: string;
   rating: number;
 }
-
 export interface IRestaurant {
   id: string;
   name: string;
