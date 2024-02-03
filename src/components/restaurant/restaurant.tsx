@@ -20,7 +20,6 @@ export const Restaurant: React.FC<RestaurantProps> = ({ restaurant }) => {
       <h3>Reviews</h3>
       <Reviews reviews={restaurant.reviews}></Reviews>
       {user && <ReviewForm className={styles.review_section} />}
-      <hr />
     </div>
   );
 };

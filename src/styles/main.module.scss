@@ -1,6 +1,6 @@
 @import "theme";
- 
- :root {
+
+:root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -16,24 +16,29 @@ body {
 }
 
 input {
-    font-size: 1rem;
-    color: #4b5563;
-    background: #ffffff;
-    padding: 0.5rem 0.5rem;
-    border: 1px solid #d1d5db;
-    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
-    border-radius: 6px;
-}
+  font-size: 1rem;
+  color: #4b5563;
+  background: #ffffff;
+  padding: 0.5rem 0.5rem;
+  border: 1px solid #d1d5db;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s,
+    box-shadow 0.2s;
+  border-radius: 6px;
 
-input:enabled:hover {
-  border-color: $input-border;
-}
+  &:enabled:hover {
+    border-color: $input-border;
+  }
 
-input:enabled:focus {
-  outline: 0 none;
-  outline-offset: 0;
-  box-shadow: 0 0 0 0.2rem $input-border-shadow;
-  border-color: $input-border;
+  &:enabled:focus {
+    outline: 0 none;
+    outline-offset: 0;
+    box-shadow: 0 0 0 0.2rem $input-border-shadow;
+    border-color: $input-border;
+  }
+
+  &:disabled {
+    background-color: $input-disabled;
+  }
 }
 
 button {
@@ -71,9 +76,9 @@ button {
 
   label {
     padding-right: 1em;
-    width: 25%
+    width: 25%;
   }
-  input{
+  input {
     width: 75%;
   }
 }
