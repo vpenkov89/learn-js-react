@@ -8,7 +8,7 @@ type ReviewFormProps = {
   // review: IReview;
 };
 
-export const ReviewForm: React.FC<ReviewFormProps> = ({className}) => {
+export const ReviewForm: React.FC<ReviewFormProps> = ({ className }) => {
   const { form, setName, setText, setRating } = useReviewForm();
   const name = form.user;
 

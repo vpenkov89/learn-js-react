@@ -1,0 +1,20 @@
+@import "../../styles/theme.scss";
+
+.root {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 50%;
+
+  .username {
+    padding-right: 1em;
+    color: $text-primary;
+    font-weight: bold;
+    width: 50%;
+  }
+
+  .login_btn {
+    display: inline-block;
+    text-align: right;
+  }
+}

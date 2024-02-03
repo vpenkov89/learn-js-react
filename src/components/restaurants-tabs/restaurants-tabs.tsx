@@ -1,5 +1,6 @@
 import { IRestaurant } from "../../constants/mock";
 import styles from "./styles.module.scss";
+import mainStyles from "../../styles/main.module.scss";
 import classNames from "classnames";
 
 type RestaurantsTabsProps = {
@@ -18,8 +19,8 @@ export const RestaurantsTabs: React.FC<RestaurantsTabsProps> = ({
       {restaurants.map((restaurant: IRestaurant) => (
         <button
           key={restaurant.id}
-          className={classNames(styles.select_button, {
-            [styles.selected]: restaurant.id === selectedRestaurantId,
+          className={classNames({
+            [mainStyles.selected]: restaurant.id === selectedRestaurantId,
           })}
           onClick={() => onSelectedRestaurantIdChange(restaurant.id)}
         >
