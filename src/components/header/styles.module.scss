@@ -3,13 +3,38 @@
 .root {
   background-color: $bg-primary;
   margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+
+  .logo_container {
+    width: 25%;
+    display: flex;
+    justify-content: center;
+
+    .logo {
+      max-width: 100px;
+      max-height: 100px;
+      padding: 1em;
+      // svg {
+      //   path {
+      //     stroke: $header;
+      //     fill: $header;
+      //   }
+      // }
+    }
+  }
 
   .main_header {
     font-size: 48px;
     font-weight: 700;
     color: $header;
-    font-family: Helvetica, Arial, sans-serif;
-    padding-left: 40px;
+    width: 50%;
     text-align: center;
+  }
+
+  .login_container {
+    width: 25%;
+    display: flex;
+    justify-content:center
   }
 }

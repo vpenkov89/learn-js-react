@@ -7,9 +7,9 @@
     width: 1em;
     height: 1em;
     cursor: pointer;
-    color: $btn-element;
+    color: $btn;
     background-color: transparent;
-    border: solid 2px $btn-element;
+    border: solid 2px $btn;
     font-size: 1em;
     font-weight: normal;
     border-radius: 4px;
@@ -17,8 +17,8 @@
     line-height: 0.7em;
 
     &:hover {
-      border-color: $btn-element-hover;
-      color: $btn-element-hover;
+      border-color: $btn-hover;
+      color: $btn-hover;
       transition: 200ms;
     }
 

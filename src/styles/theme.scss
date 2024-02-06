@@ -1,13 +1,22 @@
 $bg-primary: #eee2dc;
 $bg-secondary: #edc7b7;
+
 $text-primary: #123c69;
 $text-secondary: darkslategray;
+
 $header: #ac3b61;
 $border: lightgray;
-$btn-element: #ac3b61;
-$btn-element-hover: #862e4c;
-$btn-element-selected: #cb688a;
 $disabled-element: gray;
-$input-border: #ac3b61;
-$input-border-shadow: #e5b4c5;
 $section-border: #e5b4c5;
+
+$btn: #ac3b61;
+$btn-hover: #862e4c;
+$btn-outlined-bg-hover: #f6ebef;
+$btn-selected: #cb688a;
+$btn-secondary: #6b8eac;
+$btn-secondary-hover: #4c6886;
+$btn-secondary-outlined-bg-hover: #edeff2;
+
+$input-border: #6b8eac;
+$input-border-shadow: #c9d1da;
+$input-disabled: #eae5e5;
