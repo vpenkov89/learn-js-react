@@ -1,6 +1,6 @@
 import styles from "./styles.module.scss";
 import logo from "../../assets/img/logo.svg";
-import { Login } from "../login/login";
+import { LoginControl } from "../login-control/login-control";
 
 export const Header = () => {
   return (
@@ -10,7 +10,7 @@ export const Header = () => {
       </div>
       <div className={styles.main_header}>Restaurant Ratings and Reviews</div>
       <div className={styles.login_container}>
-        <Login />
+        <LoginControl />
       </div>
     </header>
   );

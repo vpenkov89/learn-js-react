@@ -1,40 +1,24 @@
-import { createPortal } from "react-dom";
-import styles from "./styles.module.scss";
 import mainStyles from "../../styles/main.module.scss";
-import { useRef, useState, useLayoutEffect } from "react";
-import { User } from "../../contexts/user";
+import { useContext, useRef, useState } from "react";
+import { UserContext } from "../../contexts/user";
 import classNames from "classnames";
 
-export type LoginModalResult = User | null;
-
-type LoginModalProps = {
-  open: boolean;
-  callback: (result: LoginModalResult) => void;
+type LoginFormProps = {
+  onClose: () => void;
 };
 
-export const LoginModal: React.FC<LoginModalProps> = ({ open, callback }) => {
-  const dialog = useRef<HTMLDialogElement>(null);
+export const LoginForm: React.FC<LoginFormProps> = ({ onClose }) => {
+  const { setUser } = useContext(UserContext);
   const form = useRef<HTMLFormElement>(null);
   const [isFormSubmitted, setFormSubmitted] = useState(false);
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
 
-  useLayoutEffect(() => {
-    if (open) {
-      setFormSubmitted(false);
-      setName("");
-      setEmail("");
-      dialog?.current?.showModal();
-    } else {
-      dialog?.current?.close();
-    }
-  }, [open]);
-
-  return createPortal(
-    <dialog ref={dialog} className={styles.root}>
-      <div className={mainStyles.dialog_header}>Login</div>
+  return (
+    <>
       <form
-        name="loginModalForm"
+        name="loginForm"
+        method="dialog"
         ref={form}
         className={classNames({ [mainStyles.submitted]: isFormSubmitted })}
       >
@@ -46,6 +30,9 @@ export const LoginModal: React.FC<LoginModalProps> = ({ open, callback }) => {
             value={name}
             required={true}
             onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+              if (isFormSubmitted) {
+                setFormSubmitted(false);
+              }
               setName(event.target.value);
             }}
           ></input>
@@ -58,17 +45,20 @@ export const LoginModal: React.FC<LoginModalProps> = ({ open, callback }) => {
             value={email}
             required={true}
             onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+              if (isFormSubmitted) {
+                setFormSubmitted(false);
+              }
               setEmail(event.target.value);
             }}
           ></input>
         </div>
       </form>
+
       <div className={mainStyles.dialog_footer}>
         <button
+          type="reset"
           className={mainStyles.secondary_outlined}
-          onClick={() => {
-            callback(null);
-          }}
+          onClick={onClose}
         >
           Cancel
         </button>
@@ -79,15 +69,14 @@ export const LoginModal: React.FC<LoginModalProps> = ({ open, callback }) => {
           onClick={() => {
             setFormSubmitted(true);
             if (form.current?.checkValidity()) {
-              //TODO не работает
-              callback({ name: String(name), email: String(name) });
+              setUser({ name: String(name), email: String(name) });
+              onClose();
             }
           }}
         >
           Login
         </button>
       </div>
-    </dialog>,
-    document.getElementById("modal")!
+    </>
   );
 };

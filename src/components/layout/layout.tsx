@@ -9,6 +9,7 @@ type LayoutProps = {
 export const Layout = ({ children }: LayoutProps) => {
   return (
     <div className={styles.root}>
+      <div id="modal-container"></div>
       <Header />
         <div className={styles.content}>{children}</div>
       <Footer />
