@@ -1,13 +1,12 @@
 import React from "react";
+import { IUserShort } from "../constants/mock";
 
 interface UserContext {
-  user: User | null;
-  setUser: (user: User | null) => void;
+  user: IUser | null;
+  setUser: (user: IUser | null) => void;
 }
 
-export interface User {
-  id?: string;
-  name: string;
+export interface IUser extends IUserShort {
   email: string;
   // authToken?: string;
 }
