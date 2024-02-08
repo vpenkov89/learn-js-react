@@ -2,13 +2,19 @@ import { useState } from "react";
 import { IDish } from "../../constants/mock";
 import { Counter } from "../counter/counter";
 import styles from "./styles.module.scss";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux";
+import { selectDishById } from "../../redux/entities/dish/selectors";
 
 type DishProps = {
-  dish: IDish;
+  dishId: string;
 };
 
-export const Dish: React.FC<DishProps> = ({ dish }) => {
+export const Dish: React.FC<DishProps> = ({ dishId }) => {
   const [count, setCount] = useState(0);
+  const dish: IDish = useSelector((state: RootState) =>
+    selectDishById(state, dishId)
+  )!;
 
   return (
     <div className={styles.root}>

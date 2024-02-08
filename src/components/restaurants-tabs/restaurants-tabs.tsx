@@ -1,31 +1,15 @@
-import { IRestaurant } from "../../constants/mock";
 import styles from "./styles.module.scss";
-import mainStyles from "../../styles/main.module.scss";
-import classNames from "classnames";
 
-type RestaurantsTabsProps = {
-  restaurants: IRestaurant[];
-  selectedRestaurantId: string;
-  onSelectedRestaurantIdChange: (restaurantId: string) => void;
-};
+import { selectRestaurantsIds } from "../../redux/entities/restaurant/selectors";
+import { useSelector } from "react-redux";
+import { RestaurantTab } from "../restaurant-tab/restaurant-tab";
 
-export const RestaurantsTabs: React.FC<RestaurantsTabsProps> = ({
-  restaurants,
-  selectedRestaurantId,
-  onSelectedRestaurantIdChange,
-}) => {
+export const RestaurantsTabs: React.FC<unknown> = () => {
+  const restaurantsIds: string[] = useSelector(selectRestaurantsIds);
   return (
     <div className={styles.root}>
-      {restaurants.map((restaurant: IRestaurant) => (
-        <button
-          key={restaurant.id}
-          className={classNames({
-            [mainStyles.selected]: restaurant.id === selectedRestaurantId,
-          })}
-          onClick={() => onSelectedRestaurantIdChange(restaurant.id)}
-        >
-          {restaurant.name}
-        </button>
+      {restaurantsIds.map((restaurantId: string) => (
+        <RestaurantTab key={restaurantId} restaurantId={restaurantId} />
       ))}
     </div>
   );
