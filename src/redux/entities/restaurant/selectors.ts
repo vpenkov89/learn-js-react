@@ -6,4 +6,4 @@ export const selectRestaurantsIds = (state: RootState) =>
   selectRestaurantModule(state).ids;
 
 export const selectRestaurantById = (state: RootState, id: string) =>
-  selectRestaurantModule(state).entities.get(id);
+  selectRestaurantModule(state).entities[id];

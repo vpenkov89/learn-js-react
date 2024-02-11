@@ -1,6 +1,5 @@
 import { Dish } from "../dish/dish";
 import styles from "./styles.module.scss";
-
 type DishesProps = {
   dishesIds: string[];
 };

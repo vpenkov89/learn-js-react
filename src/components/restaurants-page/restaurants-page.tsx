@@ -1,27 +1,53 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Restaurant } from "../restaurant/restaurant";
 import { RestaurantsTabs } from "../restaurants-tabs/restaurants-tabs";
-import { useSelector } from "react-redux";
-import { selectRestaurantsIds } from "../../redux/entities/restaurant/selectors";
+import { useDispatch, useSelector } from "react-redux";
 import { SelectedRestaurantContext } from "../../contexts/selected-restaurant";
+import { getRestaurants } from "../../redux/entities/restaurant/thunks/get-restaurants";
+import { AppDispatch, RootState } from "../../redux";
+import { RequestSlice, selectIsLoading } from "../../redux/ui/request";
+import { getUsers } from "../../redux/entities/user/thunks/get-users";
 
 export const RestaurantsPage: React.FC<unknown> = () => {
-  const restaurantsIds: string[] = useSelector(selectRestaurantsIds);
   const [selectedRestaurantId, setSelectedRestaurantId] = useState<
     string | null
-  >(restaurantsIds[0]);
+  >(null);
+  const [restaurantsRequestId, setRestaurantsRequestId] = useState<
+    string | null
+  >(null);
+  const [usersRequestId, setUsersRequestId] = useState<string | null>(null);
+
+  const isRestaurantsLoading = useSelector(
+    (state: RequestSlice) =>
+      restaurantsRequestId && selectIsLoading(state, restaurantsRequestId)
+  );
+  const isUsersLoading = useSelector(
+    (state: RootState) =>
+      usersRequestId && selectIsLoading(state, usersRequestId)
+  );
+
+  const dispath = useDispatch<AppDispatch>();
+
+  useEffect(() => {
+    setRestaurantsRequestId(dispath(getRestaurants()).requestId);
+    setUsersRequestId(dispath(getUsers()).requestId);
+  }, [dispath]);
 
   return (
     <SelectedRestaurantContext.Provider
       value={{ selectedRestaurantId, setSelectedRestaurantId }}
     >
-      <div>
-        <b>Select restaurant:</b>
-        <RestaurantsTabs />
-        {selectedRestaurantId && (
-          <Restaurant restaurantId={selectedRestaurantId} />
-        )}
-      </div>
+      {isRestaurantsLoading || isUsersLoading ? (
+        <div>Loading...</div>
+      ) : (
+        <div>
+          <b>Select restaurant:</b>
+          <RestaurantsTabs />
+          {selectedRestaurantId && (
+            <Restaurant/>
+          )}
+        </div>
+      )}
     </SelectedRestaurantContext.Provider>
   );
 };

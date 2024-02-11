@@ -9,6 +9,7 @@
   -webkit-font-smoothing: subpixel-antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: $bg-secondary;
+  color: $text-primary;
 }
 
 body {
@@ -159,4 +160,18 @@ dialog {
   input {
     width: 75%;
   }
+}
+
+.badge {
+  position: absolute;
+  transform: translate(-45%, -40%);
+  border-radius: 50%;
+  text-align: center;
+  background: $badge;
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  min-width: 1.5rem;
+  height: 1.5rem;
+  line-height: 1.5rem;
 }

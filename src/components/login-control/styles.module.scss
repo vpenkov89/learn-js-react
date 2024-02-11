@@ -2,9 +2,12 @@
 
 .root {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  width: 50%;
+
+  .cart_container {
+    padding-right: 1.5em;
+  }
 
   .username {
     padding-right: 1em;

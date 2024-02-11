@@ -1,6 +1,5 @@
 import { Review } from "../review/review";
 import styles from "./styles.module.scss";
-
 type ReviewsProps = {
   reviewsIds: string[];
 };

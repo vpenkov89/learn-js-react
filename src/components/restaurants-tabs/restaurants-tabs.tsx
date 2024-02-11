@@ -8,7 +8,7 @@ export const RestaurantsTabs: React.FC<unknown> = () => {
   const restaurantsIds: string[] = useSelector(selectRestaurantsIds);
   return (
     <div className={styles.root}>
-      {restaurantsIds.map((restaurantId: string) => (
+      {restaurantsIds && restaurantsIds.map((restaurantId: string) => (
         <RestaurantTab key={restaurantId} restaurantId={restaurantId} />
       ))}
     </div>

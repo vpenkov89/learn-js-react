@@ -1,8 +1,7 @@
 import { Reducer, useCallback } from "react";
 import { useReducer } from "react";
-import { IReview } from "../../constants/mock";
 
-const INITIAL_VALUE: IReview = {
+const INITIAL_VALUE: TReviewForm = {
   user: "",
   text: "",
   rating: 5,
@@ -14,6 +13,12 @@ enum ReviewFormActionType {
   SET_RATING,
 }
 
+type TReviewForm = {
+  user: string;
+  text: string;
+  rating: number;
+};
+
 type ReviewFormReducerAction =
   | {
       type: ReviewFormActionType.SET_USER | ReviewFormActionType.SET_TEXT;
@@ -24,10 +29,10 @@ type ReviewFormReducerAction =
       payload: number;
     };
 
-const reducer: Reducer<IReview, ReviewFormReducerAction> = (
-  state: IReview,
+const reducer: Reducer<TReviewForm, ReviewFormReducerAction> = (
+  state: TReviewForm,
   { type, payload }: ReviewFormReducerAction
-): IReview => {
+): TReviewForm => {
   switch (type) {
     case ReviewFormActionType.SET_USER:
       return {
@@ -51,11 +56,11 @@ const reducer: Reducer<IReview, ReviewFormReducerAction> = (
 };
 
 export type TUseReviewForm = () => {
-  form: IReview,
-  setName: (event: React.ChangeEvent<HTMLInputElement>) => void,
-  setText: (event: React.ChangeEvent<HTMLInputElement>) => void,
-  setRating: (event: React.ChangeEvent<HTMLInputElement>) => void
-}
+  form: TReviewForm;
+  setName: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  setText: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  setRating: (event: React.ChangeEvent<HTMLInputElement>) => void;
+};
 
 export const useReviewForm: TUseReviewForm = () => {
   const [form, dispatch] = useReducer(reducer, INITIAL_VALUE);
@@ -68,7 +73,6 @@ export const useReviewForm: TUseReviewForm = () => {
   //   setValue
   // };
 
-  
   // useCallback нужен, чтобы возвращалась ссылка на старую функцию при каждом рендере, если зависимости в [] не изменились
   // при этом физически при каждом рендере создается новая функция, но вернется ли новая или старая функция зависит от того, изменились ли зависимости
   const setName = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {

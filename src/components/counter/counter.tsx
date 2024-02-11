@@ -5,13 +5,15 @@ import classNames from "classnames";
 type CounterProps = {
   className?: string;
   count: number;
-  countChange: (count: number) => void;
+  increment: () => void;
+  decrement: () => void;
 };
 
 export const Counter: React.FC<CounterProps> = ({
   className,
   count,
-  countChange,
+  increment,
+  decrement,
 }) => {
   const [_count, setCount] = useState(count ?? 0);
   return (
@@ -23,7 +25,7 @@ export const Counter: React.FC<CounterProps> = ({
         onClick={() => {
           if (_count >= 1) {
             setCount(_count - 1);
-            countChange(_count - 1);
+            decrement();
           }
         }}
       >
@@ -37,7 +39,7 @@ export const Counter: React.FC<CounterProps> = ({
         onClick={() => {
           if (_count < 5) {
             setCount(_count + 1);
-            countChange(_count + 1);
+            increment();
           }
         }}
       >

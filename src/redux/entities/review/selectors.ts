@@ -6,4 +6,4 @@ export const selectReviewsIds = (state: RootState) =>
   selectReviewModule(state).ids;
 
 export const selectReviewById = (state: RootState, id: string) =>
-  selectReviewModule(state).entities.get(id);
+  selectReviewModule(state).entities[id];

@@ -1,14 +1,17 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { IUserShort, normalizedUsers } from "../../../constants/mock";
+import { createEntityAdapter, createSlice } from "@reduxjs/toolkit";
+import { getUsers } from "./thunks/get-users";
+import { IUser } from "../../../types";
+
+const entityAdapter = createEntityAdapter<IUser>();
 
 export const userSlice = createSlice({
   name: "user",
-  initialState: {
-    entities: normalizedUsers.reduce((acc, user) => {
-      acc.set(user.id, user);
-      return acc;
-    }, new Map<string, IUserShort>()),
-    ids: normalizedUsers.map(({ id }) => id),
-  },
+  initialState: entityAdapter.getInitialState(),
   reducers: {},
+  extraReducers: (builder) => {
+    // builder.addMatcher()) // можно проверить соответствует ли action по названию (типу) данному matcher-у
+    builder.addCase(getUsers.fulfilled, (state, { payload }) => {
+      entityAdapter.setAll(state, payload);
+    });
+  },
 });

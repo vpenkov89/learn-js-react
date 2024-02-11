@@ -1,5 +1,6 @@
 import styles from "./styles.module.scss";
 import logo from "../../assets/img/logo.svg";
+
 import { LoginControl } from "../login-control/login-control";
 
 export const Header = () => {
