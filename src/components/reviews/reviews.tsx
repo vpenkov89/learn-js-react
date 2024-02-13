@@ -1,11 +1,13 @@
 import { Review } from "../review/review";
 import styles from "./styles.module.scss";
-
 type ReviewsProps = {
   reviewsIds: string[];
 };
 
 export const Reviews: React.FC<ReviewsProps> = ({ reviewsIds }) => {
+  if (!reviewsIds?.length) {
+    return null;
+  }
   return (
     <ul className={styles.root}>
       {reviewsIds.map((reviewId: string) => {

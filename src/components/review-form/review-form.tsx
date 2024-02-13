@@ -11,8 +11,12 @@ type ReviewFormProps = {
 };
 
 export const ReviewForm: React.FC<ReviewFormProps> = ({ className }) => {
-  const { form, setName, setText, setRating } = useReviewForm();
+  const { form, setText, setName, setRating } = useReviewForm();
   const { user } = useContext(UserContext);
+
+  if (!user) {
+    return null;
+  }
 
   return (
     <form name="reviewForm" className={classNames(className, styles.root)}>

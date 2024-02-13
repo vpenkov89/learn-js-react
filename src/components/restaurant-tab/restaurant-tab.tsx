@@ -1,11 +1,11 @@
 import { useSelector } from "react-redux";
-import { IRestaurant } from "../../constants/mock";
 import { RootState } from "../../redux";
 import { selectRestaurantById } from "../../redux/entities/restaurant/selectors";
 import mainStyles from "../../styles/main.module.scss";
 import classNames from "classnames";
 import { SelectedRestaurantContext } from "../../contexts/selected-restaurant";
 import { useContext } from "react";
+import { IRestaurant } from "../../types";
 
 type RestaurantTabProps = {
   restaurantId: string;

@@ -1,9 +1,9 @@
 import { useSelector } from "react-redux";
-import { IReview, IUserShort } from "../../constants/mock";
 import styles from "./styles.module.scss";
 import { RootState } from "../../redux";
 import { selectReviewById } from "../../redux/entities/review/selectors";
 import { selectUserById } from "../../redux/entities/user/selectors";
+import { IReview, IUserShort } from "../../types";
 
 type ReviewProps = {
   reviewId: string;
@@ -14,12 +14,15 @@ export const Review: React.FC<ReviewProps> = ({ reviewId }) => {
     selectReviewById(state, reviewId)
   )!;
   const user: IUserShort = useSelector((state: RootState) =>
-    selectUserById(state, review.userId)
+    review ? selectUserById(state, review.userId) : null
   )!;
+  if (!review) {
+    return null;
+  }
   return (
     <div className={styles.root}>
       <div>
-        <b>★{review.rating}</b> {user.name}
+        <b>★{review.rating}</b> {user?.name}
       </div>
       <p>{review.text}</p>
     </div>

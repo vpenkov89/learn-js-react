@@ -1,14 +1,17 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { IRestaurant, normalizedRestaurants } from "../../../constants/mock";
+import { createEntityAdapter, createSlice } from "@reduxjs/toolkit";
+import { getRestaurants } from "./thunks/get-restaurants";
+import { IRestaurant } from "../../../types";
+
+const entityAdapter = createEntityAdapter<IRestaurant>();
 
 export const restaurantSlice = createSlice({
   name: "restaurant",
-  initialState: {
-    entities: normalizedRestaurants.reduce((acc, restaurant) => {
-      acc.set(restaurant.id, restaurant);
-      return acc;
-    }, new Map<string, IRestaurant>()),
-    ids: normalizedRestaurants.map(({ id }) => id),
-  },
+  initialState: entityAdapter.getInitialState(),
   reducers: {},
+  extraReducers: (builder) => {
+    // builder.addMatcher()) // можно проверить соответствует ли action по названию (типу) данному matcher-у
+    builder.addCase(getRestaurants.fulfilled, (state, { payload }) => {
+      entityAdapter.setAll(state, payload);
+    });
+  },
 });

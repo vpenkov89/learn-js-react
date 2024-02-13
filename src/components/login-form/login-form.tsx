@@ -69,7 +69,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onClose }) => {
           onClick={() => {
             setFormSubmitted(true);
             if (form.current?.checkValidity()) {
-              setUser({ name: String(name), email: String(name) });
+              setUser({ id: "", name: String(name), email: String(name) });
               onClose();
             }
           }}

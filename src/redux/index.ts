@@ -3,12 +3,21 @@ import { dishSlice } from "./entities/dish";
 import { restaurantSlice } from "./entities/restaurant";
 import { reviewSlice } from "./entities/review";
 import { userSlice } from "./entities/user";
+import { cartSlice } from "./ui/cart";
+import { requestSlice } from "./ui/request";
 
 export const store = configureStore({
-  reducer: combineSlices(dishSlice, restaurantSlice, reviewSlice, userSlice),
+  reducer: combineSlices(
+    dishSlice,
+    restaurantSlice,
+    reviewSlice,
+    userSlice,
+    cartSlice,
+    requestSlice
+  ),
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
-export type RootState = ReturnType<typeof store.getState>
+export type RootState = ReturnType<typeof store.getState>;
 // Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
-export type AppDispatch = typeof store.dispatch
+export type AppDispatch = typeof store.dispatch;

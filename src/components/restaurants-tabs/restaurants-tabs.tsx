@@ -1,16 +1,19 @@
 import styles from "./styles.module.scss";
-
-import { selectRestaurantsIds } from "../../redux/entities/restaurant/selectors";
-import { useSelector } from "react-redux";
 import { RestaurantTab } from "../restaurant-tab/restaurant-tab";
 
-export const RestaurantsTabs: React.FC<unknown> = () => {
-  const restaurantsIds: string[] = useSelector(selectRestaurantsIds);
+type RestaurantTabsProps = {
+  restaurantsIds: string[];
+};
+
+export const RestaurantsTabs: React.FC<RestaurantTabsProps> = ({
+  restaurantsIds,
+}) => {
   return (
     <div className={styles.root}>
-      {restaurantsIds.map((restaurantId: string) => (
-        <RestaurantTab key={restaurantId} restaurantId={restaurantId} />
-      ))}
+      {restaurantsIds &&
+        restaurantsIds.map((restaurantId: string) => (
+          <RestaurantTab key={restaurantId} restaurantId={restaurantId} />
+        ))}
     </div>
   );
 };

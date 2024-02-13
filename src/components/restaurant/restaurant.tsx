@@ -1,29 +1,22 @@
-import { useContext } from "react";
-import { UserContext } from "../../contexts/user";
-import { Dishes } from "../dishes/dishes";
+import { IRestaurant } from "../../types";
+import { MenuContainer } from "../menu/menu-container";
 import { ReviewForm } from "../review-form/review-form";
-import { Reviews } from "../reviews/reviews";
+import { ReviewsContainer } from "../reviews/reviews-container";
 import styles from "./styles.module.scss";
-import { useSelector } from "react-redux";
-import { selectRestaurantById } from "../../redux/entities/restaurant/selectors";
-import { IRestaurant } from "../../constants/mock";
-import { RootState } from "../../redux";
 
 type RestaurantProps = {
-  restaurantId: string;
+  restaurant: IRestaurant;
 };
 
-export const Restaurant: React.FC<RestaurantProps> = ({ restaurantId }) => {
-  const { user } = useContext(UserContext);
-  const restaurant: IRestaurant = useSelector((state: RootState) => selectRestaurantById(state, restaurantId))!;
+export const Restaurant: React.FC<RestaurantProps> = ({ restaurant }) => {
   return (
     <div className={styles.root}>
       <h2>{restaurant.name}</h2>
       <h3>Menu</h3>
-      <Dishes dishesIds={restaurant.menu}></Dishes>
+      <MenuContainer restaurantId={restaurant.id}></MenuContainer>
       <h3>Reviews</h3>
-      <Reviews reviewsIds={restaurant.reviews}></Reviews>
-      {user && <ReviewForm className={styles.review_section} />}
+      <ReviewsContainer restaurantId={restaurant.id}></ReviewsContainer>
+      <ReviewForm className={styles.review_section} />
     </div>
   );
 };

@@ -5,6 +5,7 @@ import classNames from "classnames";
 import mainStyles from "../../styles/main.module.scss";
 import { LoginForm } from "../login-form/login-form";
 import { Modal } from "../modal/modal";
+import { CartButtonContainer } from "../cart-button/cart-button-container";
 
 export const LoginControl: React.FC<unknown> = () => {
   const { user, setUser } = useContext(UserContext);
@@ -17,13 +18,18 @@ export const LoginControl: React.FC<unknown> = () => {
       <div className={styles.root}>
         {user ? (
           <>
-            <span className={styles.username}>{user.name}</span>
-            <button
-              className={classNames(mainStyles.outlined, styles.login_btn)}
-              onClick={() => setUser(null)}
-            >
-              Logout
-            </button>
+            <div className={styles.cart_container}>
+              <CartButtonContainer />
+            </div>
+            <div>
+              <span className={styles.username}>{user.name}</span>
+              <button
+                className={classNames(mainStyles.outlined, styles.login_btn)}
+                onClick={() => setUser(null)}
+              >
+                Logout
+              </button>
+            </div>
           </>
         ) : (
           <button
