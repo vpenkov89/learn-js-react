@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { Restaurant } from "../restaurant/restaurant";
-import { RestaurantsTabs } from "../restaurants-tabs/restaurants-tabs";
 import { useDispatch, useSelector } from "react-redux";
 import { SelectedRestaurantContext } from "../../contexts/selected-restaurant";
 import { getRestaurants } from "../../redux/entities/restaurant/thunks/get-restaurants";
 import { AppDispatch, RootState } from "../../redux";
-import { RequestSlice, selectIsLoading } from "../../redux/ui/request";
+import { selectIsLoading } from "../../redux/ui/request";
+import { RestaurantsTabsContainer } from "../restaurants-tabs/restaurants-tabs-container";
+import { RestaurantContainer } from "../restaurant/restaurant-container";
 import { getUsers } from "../../redux/entities/user/thunks/get-users";
 
 export const RestaurantsPage: React.FC<unknown> = () => {
@@ -18,7 +18,7 @@ export const RestaurantsPage: React.FC<unknown> = () => {
   const [usersRequestId, setUsersRequestId] = useState<string | null>(null);
 
   const isRestaurantsLoading = useSelector(
-    (state: RequestSlice) =>
+    (state: RootState) =>
       restaurantsRequestId && selectIsLoading(state, restaurantsRequestId)
   );
   const isUsersLoading = useSelector(
@@ -26,12 +26,12 @@ export const RestaurantsPage: React.FC<unknown> = () => {
       usersRequestId && selectIsLoading(state, usersRequestId)
   );
 
-  const dispath = useDispatch<AppDispatch>();
+  const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    setRestaurantsRequestId(dispath(getRestaurants()).requestId);
-    setUsersRequestId(dispath(getUsers()).requestId);
-  }, [dispath]);
+    setRestaurantsRequestId(dispatch(getRestaurants()).requestId);
+    setUsersRequestId(dispatch(getUsers()).requestId);
+  }, [dispatch]);
 
   return (
     <SelectedRestaurantContext.Provider
@@ -42,10 +42,8 @@ export const RestaurantsPage: React.FC<unknown> = () => {
       ) : (
         <div>
           <b>Select restaurant:</b>
-          <RestaurantsTabs />
-          {selectedRestaurantId && (
-            <Restaurant/>
-          )}
+          <RestaurantsTabsContainer />
+          {selectedRestaurantId && <RestaurantContainer />}
         </div>
       )}
     </SelectedRestaurantContext.Provider>

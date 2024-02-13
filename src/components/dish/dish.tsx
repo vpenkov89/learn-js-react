@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../redux";
 import { selectDishById } from "../../redux/entities/dish/selectors";
 import {
-  CartSlice,
   decrement,
   increment,
   selectProductAmountById,
@@ -20,7 +19,7 @@ export const Dish: React.FC<DishProps> = ({ dishId }) => {
     selectDishById(state, dishId)
   )!;
 
-  const amount = useSelector((state: CartSlice) =>
+  const amount = useSelector((state: RootState) =>
     selectProductAmountById(state, dishId)
   );
   const dispatch = useDispatch<AppDispatch>();

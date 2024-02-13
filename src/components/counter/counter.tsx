@@ -1,4 +1,3 @@
-import { useState } from "react";
 import styles from "./styles.module.scss";
 import classNames from "classnames";
 
@@ -15,30 +14,27 @@ export const Counter: React.FC<CounterProps> = ({
   increment,
   decrement,
 }) => {
-  const [_count, setCount] = useState(count ?? 0);
   return (
     <div className={classNames(className, styles.root)}>
       <button
         className={classNames(styles.counter_button, {
-          [styles.disabled]: _count < 1,
+          [styles.disabled]: count < 1,
         })}
         onClick={() => {
-          if (_count >= 1) {
-            setCount(_count - 1);
+          if (count >= 1) {
             decrement();
           }
         }}
       >
         -
       </button>
-      <span className={styles.count}>{_count}</span>
+      <span className={styles.count}>{count}</span>
       <button
         className={classNames(styles.counter_button, {
-          [styles.disabled]: _count > 4,
+          [styles.disabled]: count > 4,
         })}
         onClick={() => {
-          if (_count < 5) {
-            setCount(_count + 1);
+          if (count < 5) {
             increment();
           }
         }}

@@ -14,6 +14,10 @@ export const ReviewForm: React.FC<ReviewFormProps> = ({ className }) => {
   const { form, setText, setName, setRating } = useReviewForm();
   const { user } = useContext(UserContext);
 
+  if (!user) {
+    return null;
+  }
+
   return (
     <form name="reviewForm" className={classNames(className, styles.root)}>
       <div className={mainStyles.form_group}>

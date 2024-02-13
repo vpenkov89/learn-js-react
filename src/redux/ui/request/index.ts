@@ -9,11 +9,11 @@ interface ActionWithMeta extends Action {
   };
 }
 
-export type RequestSlice = { request: Record<string, string> };
+const initialState: Record<string, string> = {};
 
 export const requestSlice = createSlice({
   name: "request",
-  initialState: {} as Record<string, string>,
+  initialState,
   selectors: {
     selectIsLoading: (state, id: string) => state[id] === REQUEST_STATUS.pending,
     selectIsFulfilled: (state, id: string) => state[id] === REQUEST_STATUS.success,

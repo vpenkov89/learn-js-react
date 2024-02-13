@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export type CartSlice = { cart: Record<string, number> };
+const initialState: Record<string, number> = {};
 
 export const cartSlice = createSlice({
   name: "cart",
-  initialState: {} as Record<string, number>,
+  initialState,
   reducers: {
     increment: (state, { payload: productId }) => {
       state[productId] = (state[productId] || 0) + 1;

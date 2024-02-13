@@ -1,9 +1,8 @@
 import { createEntityAdapter, createSlice } from "@reduxjs/toolkit";
 import { IReview } from "../../../types";
-import { getReviews } from "./thunks/get-reviews";
+import { getReviewsByRestaurantId } from "./thunks/get-reviews-by-restaurant-id";
 
 const entityAdapter = createEntityAdapter<IReview>();
-
 
 export const reviewSlice = createSlice({
   name: "review",
@@ -11,8 +10,8 @@ export const reviewSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     // builder.addMatcher()) // можно проверить соответствует ли action по названию (типу) данному matcher-у
-    builder.addCase(getReviews.fulfilled, (state, { payload }) => {
-      entityAdapter.setAll(state, payload);
+    builder.addCase(getReviewsByRestaurantId.fulfilled, (state, { payload }) => {
+      entityAdapter.upsertMany(state, payload);
     });
   },
 });
