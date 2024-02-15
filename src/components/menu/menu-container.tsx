@@ -1,10 +1,5 @@
-import { useDispatch, useSelector } from "react-redux";
 import { Menu } from "./menu";
-import { selectRestaurantMenuById } from "../../redux/entities/restaurant/selectors";
-import { AppDispatch, RootState } from "../../redux";
-import { getDishesByRestaurantId } from "../../redux/entities/dish/thunks/get-dishes-by-restaurant-id";
-import { useEffect, useState } from "react";
-import { selectIsLoading } from "../../redux/ui/request";
+import { useGetDishesByRestaurantIdQuery } from "../../redux/services/api";
 
 type MenuContainerProps = {
   restaurantId: string;
@@ -13,30 +8,20 @@ type MenuContainerProps = {
 export const MenuContainer: React.FC<MenuContainerProps> = ({
   restaurantId,
 }) => {
-  const [menuRequestId, setMenuRequestId] = useState<string | null>(null);
-  const dishesIds = useSelector((state: RootState) =>
-    selectRestaurantMenuById(state, restaurantId)
-  );
+  const { data: dishes, isFetching } =
+    useGetDishesByRestaurantIdQuery(restaurantId);
 
-  const isDishesLoading = useSelector(
-    (state: RootState) => menuRequestId && selectIsLoading(state, menuRequestId)
-  );
-
-  const dispatch = useDispatch<AppDispatch>();
-
-  useEffect(() => {
-    setMenuRequestId(
-      dispatch(getDishesByRestaurantId(restaurantId!)).requestId
-    );
-  }, [restaurantId, dispatch]);
-
-  if (!dishesIds?.length) {
+  if (!dishes?.length) {
     return null;
   }
 
   return (
     <>
-      {isDishesLoading ? <div>Loading...</div> : <Menu dishesIds={dishesIds} />}
+      {isFetching ? (
+        <div>Loading...</div>
+      ) : (
+        <Menu restaurantId={restaurantId} dishes={dishes} />
+      )}
     </>
   );
 };

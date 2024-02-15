@@ -1,24 +1,12 @@
-import { useSelector } from "react-redux";
 import styles from "./styles.module.scss";
-import { RootState } from "../../redux";
-import { selectReviewById } from "../../redux/entities/review/selectors";
-import { selectUserById } from "../../redux/entities/user/selectors";
 import { IReview, IUserShort } from "../../types";
 
 type ReviewProps = {
-  reviewId: string;
+  review: IReview;
+  user: IUserShort;
 };
 
-export const Review: React.FC<ReviewProps> = ({ reviewId }) => {
-  const review: IReview = useSelector((state: RootState) =>
-    selectReviewById(state, reviewId)
-  )!;
-  const user: IUserShort = useSelector((state: RootState) =>
-    review ? selectUserById(state, review.userId) : null
-  )!;
-  if (!review) {
-    return null;
-  }
+export const Review: React.FC<ReviewProps> = ({ review, user }) => {
   return (
     <div className={styles.root}>
       <div>

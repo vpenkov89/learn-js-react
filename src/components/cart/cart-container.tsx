@@ -1,9 +1,9 @@
 import { useSelector } from "react-redux";
-
-import { selectCartProducIds } from "../../redux/ui/cart";
+import { selectCartDishesByRestaurantds } from "../../redux/ui/cart";
 import { Cart } from "./cart";
 
 export const CartContainer: React.FC<unknown> = () => {
-  const productIds = useSelector(selectCartProducIds);
-  return <Cart productIds={productIds} />;
+  const dishesByRestaurants:[string, Record<string, number>][] = useSelector(selectCartDishesByRestaurantds);
+
+  return <Cart dishesByRestaurants={dishesByRestaurants} />;
 };

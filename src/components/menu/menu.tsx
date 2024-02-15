@@ -1,20 +1,23 @@
-import { Dish } from "../dish/dish";
+import { IDish } from "../../types";
+import { DishContainer } from "../dish/dish-container";
 import styles from "./styles.module.scss";
 
 type MenuProps = {
-  dishesIds: string[];
+  restaurantId: string,
+  dishes: IDish[];
 };
 
-export const Menu: React.FC<MenuProps> = ({ dishesIds }) => {
-  if (!dishesIds) {
+export const Menu: React.FC<MenuProps> = ({ restaurantId, dishes }) => {
+  if (!dishes) {
     return null;
   }
   return (
     <ul className={styles.root}>
-      {dishesIds.map((dishId: string) => {
+      {dishes.map((dish: IDish) => {
         return (
-          <li key={dishId}>
-            <Dish dishId={dishId} />
+          <li key={dish.id}>
+            {/* не смотря на наличие всей сущности dish передам только id для совместимости dish с корзиной */}
+            <DishContainer restaurantId={restaurantId} dishId={dish.id} />
           </li>
         );
       })}

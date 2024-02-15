@@ -1,17 +1,25 @@
-import { Dish } from "../dish/dish";
+import { DishContainer } from "../dish/dish-container";
 import styles from "./styles.module.scss";
 
 type CartProps = {
-  productIds: string[];
+  dishesByRestaurants: [string, Record<string, number>][];
 };
 
-export const Cart: React.FC<CartProps> = ({ productIds }) => {
+export const Cart: React.FC<CartProps> = ({ dishesByRestaurants }) => {
   return (
     <div className={styles.root}>
-      {productIds?.length ? (
-        productIds.map((productId) => (
-          <Dish key={productId} dishId={productId} />
-        ))
+      {dishesByRestaurants.length ? (
+        dishesByRestaurants.map((restaurantIdWithDishes) =>
+          Object.keys(restaurantIdWithDishes[1]).map((dishId) => {
+            return (
+              <DishContainer
+                key={dishId}
+                restaurantId={restaurantIdWithDishes[0]}
+                dishId={dishId}
+              />
+            );
+          })
+        )
       ) : (
         <span>Your cart is empty</span>
       )}

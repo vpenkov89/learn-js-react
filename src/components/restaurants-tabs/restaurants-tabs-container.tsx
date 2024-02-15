@@ -1,8 +1,10 @@
-import { selectRestaurantsIds } from "../../redux/entities/restaurant/selectors";
-import { useSelector } from "react-redux";
+import { useGetRestaurantsQuery } from "../../redux/services/api";
 import { RestaurantsTabs } from "./restaurants-tabs";
 
 export const RestaurantsTabsContainer: React.FC<unknown> = () => {
-  const restaurantsIds: string[] = useSelector(selectRestaurantsIds);
-  return <RestaurantsTabs restaurantsIds={restaurantsIds} />;
+  const { data: restaurants } = useGetRestaurantsQuery(undefined);
+  if (!restaurants) {
+    return null;
+  }
+  return <RestaurantsTabs restaurants={restaurants} />;
 };
