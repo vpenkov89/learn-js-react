@@ -1,13 +1,11 @@
 import { useSelector } from "react-redux";
-import { selectTotalProductsAmount } from "../../redux/ui/cart";
 import { CartButton } from "./cart-button";
 import { RootState } from "../../redux";
+import { selectTotalDishesAmount } from "../../redux/ui/cart";
 
 export const CartButtonContainer: React.FC<unknown> = () => {
-  const totalProductAmount = useSelector((state: RootState) =>
-    selectTotalProductsAmount(state)
+  const totalAmount = useSelector((state: RootState) =>
+    selectTotalDishesAmount(state)
   );
-  return (
-   <CartButton amount={totalProductAmount}/>
-  );
+  return <CartButton amount={totalAmount} />;
 };

@@ -1,9 +1,22 @@
 @import "../../styles/theme.scss";
 
 .root {
+  padding-bottom: 0.5em;
+  margin-bottom: 0.5em;
+  border-bottom: solid 1px $border;
+
+  &.edit_mode {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 1.3em;
+    width: 20em;
+  }
+
   p {
     margin-left: 0.5rem;
     margin-top: 0.1rem;
+    margin-bottom: 0.1rem;
     font-style: italic;
     color: darkslategray;
   }

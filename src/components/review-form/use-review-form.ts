@@ -1,27 +1,24 @@
 import { Reducer, useCallback } from "react";
 import { useReducer } from "react";
 
-const INITIAL_VALUE: TReviewForm = {
-  user: "",
+const INITIAL_VALUE: IReviewForm = {
   text: "",
   rating: 5,
 };
 
 enum ReviewFormActionType {
-  SET_USER,
   SET_TEXT,
   SET_RATING,
 }
 
-type TReviewForm = {
-  user: string;
+export interface IReviewForm {
   text: string;
   rating: number;
-};
+}
 
 type ReviewFormReducerAction =
   | {
-      type: ReviewFormActionType.SET_USER | ReviewFormActionType.SET_TEXT;
+      type: ReviewFormActionType.SET_TEXT;
       payload: string;
     }
   | {
@@ -29,16 +26,11 @@ type ReviewFormReducerAction =
       payload: number;
     };
 
-const reducer: Reducer<TReviewForm, ReviewFormReducerAction> = (
-  state: TReviewForm,
+const reducer: Reducer<IReviewForm, ReviewFormReducerAction> = (
+  state: IReviewForm,
   { type, payload }: ReviewFormReducerAction
-): TReviewForm => {
+): IReviewForm => {
   switch (type) {
-    case ReviewFormActionType.SET_USER:
-      return {
-        ...INITIAL_VALUE,
-        user: payload,
-      };
     case ReviewFormActionType.SET_TEXT:
       return {
         ...state,
@@ -55,16 +47,14 @@ const reducer: Reducer<TReviewForm, ReviewFormReducerAction> = (
   }
 };
 
-export type TUseReviewForm = () => {
-  form: TReviewForm;
-  setName: (event: React.ChangeEvent<HTMLInputElement>) => void;
+export type TUseReviewForm = (initialState?: IReviewForm) => {
+  form: IReviewForm;
   setText: (event: React.ChangeEvent<HTMLInputElement>) => void;
   setRating: (event: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-export const useReviewForm: TUseReviewForm = () => {
-  const [form, dispatch] = useReducer(reducer, INITIAL_VALUE);
-  const name = form.user;
+export const useReviewForm: TUseReviewForm = (initialState = INITIAL_VALUE) => {
+  const [form, dispatch] = useReducer(reducer, initialState);
 
   // Более простой вариант reducer-a имеет вид (передаем тип action-a извне):
   // const setValue = (type, value) => dispatch({type, payload: value})
@@ -75,24 +65,12 @@ export const useReviewForm: TUseReviewForm = () => {
 
   // useCallback нужен, чтобы возвращалась ссылка на старую функцию при каждом рендере, если зависимости в [] не изменились
   // при этом физически при каждом рендере создается новая функция, но вернется ли новая или старая функция зависит от того, изменились ли зависимости
-  const setName = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+  const setText = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     dispatch({
-      type: ReviewFormActionType.SET_USER,
+      type: ReviewFormActionType.SET_TEXT,
       payload: event.target.value,
     });
   }, []);
-
-  const setText = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      if (name) {
-        dispatch({
-          type: ReviewFormActionType.SET_TEXT,
-          payload: event.target.value,
-        });
-      }
-    },
-    [name]
-  );
 
   const setRating = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) =>
@@ -105,7 +83,6 @@ export const useReviewForm: TUseReviewForm = () => {
 
   return {
     form,
-    setName,
     setText,
     setRating,
   };

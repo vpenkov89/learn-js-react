@@ -1,19 +1,14 @@
 import { Counter } from "../counter/counter";
 import styles from "./styles.module.scss";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../redux";
-import { decrement, increment } from "../../redux/ui/cart";
 import { IDish } from "../../types";
 
 type DishProps = {
-  restaurantId: string;
   dish: IDish;
   amount: number;
+  setAmount: (amount: number) => void;
 };
 
-export const Dish: React.FC<DishProps> = ({ restaurantId, dish, amount }) => {
-  const dispatch = useDispatch<AppDispatch>();
-
+export const Dish: React.FC<DishProps> = ({ dish, amount, setAmount }) => {
   if (!dish) {
     return null;
   }
@@ -28,25 +23,7 @@ export const Dish: React.FC<DishProps> = ({ restaurantId, dish, amount }) => {
           <u>Ingridients:</u> {dish.ingredients.join(", ")}
         </p>
       </div>
-      <Counter
-        count={amount}
-        increment={() =>
-          dispatch(
-            increment({
-              restaurantId,
-              dishId: dish.id,
-            })
-          )
-        }
-        decrement={() =>
-          dispatch(
-            decrement({
-              restaurantId,
-              dishId: dish.id,
-            })
-          )
-        }
-      ></Counter>
+      <Counter count={amount} onChange={setAmount}></Counter>
     </div>
   );
 };

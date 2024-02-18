@@ -11,17 +11,13 @@ export const MenuContainer: React.FC<MenuContainerProps> = ({
   const { data: dishes, isFetching } =
     useGetDishesByRestaurantIdQuery(restaurantId);
 
+  if (isFetching) {
+    return <div>Loading...</div>;
+  }
+
   if (!dishes?.length) {
     return null;
   }
 
-  return (
-    <>
-      {isFetching ? (
-        <div>Loading...</div>
-      ) : (
-        <Menu restaurantId={restaurantId} dishes={dishes} />
-      )}
-    </>
-  );
+  return <Menu dishes={dishes} />;
 };

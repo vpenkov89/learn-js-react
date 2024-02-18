@@ -10,10 +10,12 @@ export const ReviewsContainer: React.FC<ReviewsContainerProps> = ({
 }) => {
   const { data: reviews, isFetching } =
     useGetReviewsByRestaurantIdQuery(restaurantId);
+
+  if (isFetching) {
+    return <div>Loading...</div>;
+  }
   if (!reviews?.length) {
     return null;
   }
-  return (
-    <>{isFetching ? <div>Loading...</div> : <Reviews reviews={reviews} />}</>
-  );
+  return <Reviews reviews={reviews} />;
 };

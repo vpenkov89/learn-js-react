@@ -10,7 +10,7 @@ import { IUser } from "./types";
 export const App: React.FC<unknown> = () => {
   const [user, setUser] = useState<IUser | null>(
     // TODO remove it
-    { id: "", name: "test test", email: "test@test.test" }
+    { id: "a304959a-76c0-4b34-954a-b38dbf310360", name: "Antony", email: "test@test.test" }
   );
   return (
     <Provider store={store}>

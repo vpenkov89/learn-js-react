@@ -5,7 +5,7 @@ import { useGetRestaurantsQuery } from "../../redux/services/api";
 
 export const RestaurantContainer: React.FC<unknown> = () => {
   const { selectedRestaurantId } = useContext(SelectedRestaurantContext);
-  const { data: restaurant } = useGetRestaurantsQuery(undefined, {
+  const { data: restaurant, isLoading } = useGetRestaurantsQuery(undefined, {
     selectFromResult: (result) => ({
       ...result,
       data: result.data?.find(
@@ -14,9 +14,13 @@ export const RestaurantContainer: React.FC<unknown> = () => {
     }),
   });
 
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
   if (!restaurant) {
     return null;
   }
 
   return <Restaurant restaurant={restaurant} />;
 };
+

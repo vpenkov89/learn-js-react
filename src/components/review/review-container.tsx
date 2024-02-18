@@ -7,12 +7,16 @@ type ReviewContainerProps = {
 };
 
 export const ReviewContainer: React.FC<ReviewContainerProps> = ({ review }) => {
-  const { data: user } = useGetUsersQuery(undefined, {
+  const { data: user, isLoading } = useGetUsersQuery(undefined, {
     selectFromResult: (result) => ({
       ...result,
       data: result.data?.find((userItem) => review?.userId === userItem.id),
     }),
   });
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   if (!review || !user) {
     return null;

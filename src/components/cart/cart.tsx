@@ -1,24 +1,20 @@
-import { DishContainer } from "../dish/dish-container";
 import styles from "./styles.module.scss";
 
 type CartProps = {
-  dishesByRestaurants: [string, Record<string, number>][];
+  dishesIds: string[];
 };
 
-export const Cart: React.FC<CartProps> = ({ dishesByRestaurants }) => {
+export const Cart: React.FC<CartProps> = ({ dishesIds }) => {
   return (
     <div className={styles.root}>
-      {dishesByRestaurants.length ? (
-        dishesByRestaurants.map((restaurantIdWithDishes) =>
-          Object.keys(restaurantIdWithDishes[1]).map((dishId) => {
-            return (
-              <DishContainer
-                key={dishId}
-                restaurantId={restaurantIdWithDishes[0]}
-                dishId={dishId}
-              />
-            );
-          })
+      {dishesIds?.length ? (
+        dishesIds.map(
+          (dishId) =>
+            // TODO в данном случае неясно как отобразить в корзине
+            // несколько блюд из разных рестораном без хранения id ресторана
+            // в корзине
+            dishId
+            // <DishContainer key={dishId} dish={dish} />
         )
       ) : (
         <span>Your cart is empty</span>
