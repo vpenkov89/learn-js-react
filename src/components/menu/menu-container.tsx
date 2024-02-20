@@ -19,5 +19,5 @@ export const MenuContainer: React.FC<MenuContainerProps> = ({
     return null;
   }
 
-  return <Menu dishes={dishes} />;
+  return <Menu restaurantId={restaurantId} dishes={dishes} />;
 };

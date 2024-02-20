@@ -3,10 +3,11 @@ import { DishContainer } from "../dish/dish-container";
 import styles from "./styles.module.scss";
 
 type MenuProps = {
+  restaurantId: string;
   dishes: IDish[];
 };
 
-export const Menu: React.FC<MenuProps> = ({ dishes }) => {
+export const Menu: React.FC<MenuProps> = ({ restaurantId, dishes }) => {
   if (!dishes) {
     return null;
   }
@@ -15,7 +16,8 @@ export const Menu: React.FC<MenuProps> = ({ dishes }) => {
       {dishes.map((dish: IDish) => {
         return (
           <li key={dish.id}>
-            <DishContainer dish={dish} />
+            {/* не смотря на наличие всей сущности dish передам только id для совместимости dish с корзиной */}
+            <DishContainer restaurantId={restaurantId} dishId={dish.id} />
           </li>
         );
       })}
