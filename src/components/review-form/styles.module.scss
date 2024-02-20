@@ -1,6 +1,12 @@
 @import "../../styles/theme.scss";
 
 .root {
-    margin-left: 2em;
-    max-width: 50%;
+  max-width: 50%;
+
+  .buttons_container {
+    display: flex;
+    justify-content: end;
+    gap: 0.5em;
+    width: 100%;
+  }
 }

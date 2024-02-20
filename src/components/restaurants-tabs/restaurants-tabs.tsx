@@ -1,18 +1,19 @@
 import styles from "./styles.module.scss";
 import { RestaurantTab } from "../restaurant-tab/restaurant-tab";
+import { IRestaurant } from "../../types";
 
 type RestaurantTabsProps = {
-  restaurantsIds: string[];
+  restaurants: IRestaurant[];
 };
 
 export const RestaurantsTabs: React.FC<RestaurantTabsProps> = ({
-  restaurantsIds,
+  restaurants,
 }) => {
   return (
     <div className={styles.root}>
-      {restaurantsIds &&
-        restaurantsIds.map((restaurantId: string) => (
-          <RestaurantTab key={restaurantId} restaurantId={restaurantId} />
+      {restaurants &&
+        restaurants.map((restaurant: IRestaurant) => (
+          <RestaurantTab key={restaurant.id} restaurant={restaurant} />
         ))}
     </div>
   );

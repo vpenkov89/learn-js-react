@@ -1,19 +1,20 @@
-import { Review } from "../review/review";
+import { IReview } from "../../types";
+import { ReviewContainer } from "../review/review-container";
 import styles from "./styles.module.scss";
 type ReviewsProps = {
-  reviewsIds: string[];
+  reviews: IReview[];
 };
 
-export const Reviews: React.FC<ReviewsProps> = ({ reviewsIds }) => {
-  if (!reviewsIds?.length) {
+export const Reviews: React.FC<ReviewsProps> = ({ reviews }) => {
+  if (!reviews?.length) {
     return null;
   }
   return (
     <ul className={styles.root}>
-      {reviewsIds.map((reviewId: string) => {
+      {reviews.map((review: IReview) => {
         return (
-          <li key={reviewId}>
-            <Review reviewId={reviewId} />
+          <li key={review.id}>
+            <ReviewContainer review={review} />
           </li>
         );
       })}

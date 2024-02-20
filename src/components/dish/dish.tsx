@@ -1,29 +1,14 @@
 import { Counter } from "../counter/counter";
 import styles from "./styles.module.scss";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../redux";
-import { selectDishById } from "../../redux/entities/dish/selectors";
-import {
-  decrement,
-  increment,
-  selectProductAmountById,
-} from "../../redux/ui/cart";
 import { IDish } from "../../types";
 
 type DishProps = {
-  dishId: string;
+  dish: IDish;
+  amount: number;
+  setAmount: (amount: number) => void;
 };
 
-export const Dish: React.FC<DishProps> = ({ dishId }) => {
-  const dish: IDish = useSelector((state: RootState) =>
-    selectDishById(state, dishId)
-  )!;
-
-  const amount = useSelector((state: RootState) =>
-    selectProductAmountById(state, dishId)
-  );
-  const dispatch = useDispatch<AppDispatch>();
-
+export const Dish: React.FC<DishProps> = ({ dish, amount, setAmount }) => {
   if (!dish) {
     return null;
   }
@@ -38,11 +23,7 @@ export const Dish: React.FC<DishProps> = ({ dishId }) => {
           <u>Ingridients:</u> {dish.ingredients.join(", ")}
         </p>
       </div>
-      <Counter
-        count={amount}
-        increment={() => dispatch(increment(dishId))}
-        decrement={() => dispatch(decrement(dishId))}
-      ></Counter>
+      <Counter count={amount} onChange={setAmount}></Counter>
     </div>
   );
 };

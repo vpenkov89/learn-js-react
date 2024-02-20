@@ -1,30 +1,45 @@
-import { useSelector } from "react-redux";
+import classNames from "classnames";
 import styles from "./styles.module.scss";
-import { RootState } from "../../redux";
-import { selectReviewById } from "../../redux/entities/review/selectors";
-import { selectUserById } from "../../redux/entities/user/selectors";
+import mainStyles from "../../styles/main.module.scss";
 import { IReview, IUserShort } from "../../types";
+import { useState } from "react";
+import { EditReviewFormContainer } from "../review-form/edit-review-form-container";
 
 type ReviewProps = {
-  reviewId: string;
+  review: IReview;
+  user: IUserShort;
 };
 
-export const Review: React.FC<ReviewProps> = ({ reviewId }) => {
-  const review: IReview = useSelector((state: RootState) =>
-    selectReviewById(state, reviewId)
-  )!;
-  const user: IUserShort = useSelector((state: RootState) =>
-    review ? selectUserById(state, review.userId) : null
-  )!;
-  if (!review) {
-    return null;
-  }
+export const Review: React.FC<ReviewProps> = ({ review, user }) => {
+  const [isEditMode, setIsEditMode] = useState(false);
   return (
-    <div className={styles.root}>
-      <div>
-        <b>★{review.rating}</b> {user?.name}
-      </div>
-      <p>{review.text}</p>
+    <div
+      className={classNames({ [styles.edit_mode]: !isEditMode }, styles.root)}
+    >
+      {isEditMode ? (
+        <EditReviewFormContainer
+          review={review}
+          user={user}
+          onUpdateFinished={() => {
+            setIsEditMode(false);
+          }}
+        />
+      ) : (
+        <div>
+          <div>
+            <b>★{review.rating}</b> {user?.name}
+          </div>
+          <p>{review.text}</p>
+        </div>
+      )}
+      {!isEditMode && (
+        <button
+          className={mainStyles.outlined}
+          onClick={() => setIsEditMode(!isEditMode)}
+        >
+          Edit
+        </button>
+      )}
     </div>
   );
 };

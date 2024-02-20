@@ -4,15 +4,13 @@ import classNames from "classnames";
 type CounterProps = {
   className?: string;
   count: number;
-  increment: () => void;
-  decrement: () => void;
+  onChange: (count: number) => void;
 };
 
 export const Counter: React.FC<CounterProps> = ({
   className,
   count,
-  increment,
-  decrement,
+  onChange,
 }) => {
   return (
     <div className={classNames(className, styles.root)}>
@@ -22,7 +20,7 @@ export const Counter: React.FC<CounterProps> = ({
         })}
         onClick={() => {
           if (count >= 1) {
-            decrement();
+            onChange(count - 1);
           }
         }}
       >
@@ -35,7 +33,7 @@ export const Counter: React.FC<CounterProps> = ({
         })}
         onClick={() => {
           if (count < 5) {
-            increment();
+            onChange(count + 1);
           }
         }}
       >

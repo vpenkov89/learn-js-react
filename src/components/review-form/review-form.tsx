@@ -1,34 +1,32 @@
 import styles from "./styles.module.scss";
 import mainStyles from "../../styles/main.module.scss";
 import classNames from "classnames";
-import { useReviewForm } from "./use-review-form";
-import { useContext } from "react";
-import { UserContext } from "../../contexts/user";
+import { IReviewForm, useReviewForm } from "./use-review-form";
 
 type ReviewFormProps = {
   className?: string;
-  // review: IReview;
+  initialState?: IReviewForm;
+  userName: string;
+  showCancelBtn?: boolean;
+  onSave: (newReview: IReviewForm) => void;
+  onCancel?: () => void;
 };
 
-export const ReviewForm: React.FC<ReviewFormProps> = ({ className }) => {
-  const { form, setText, setName, setRating } = useReviewForm();
-  const { user } = useContext(UserContext);
-
-  if (!user) {
-    return null;
-  }
+export const ReviewForm: React.FC<ReviewFormProps> = ({
+  className,
+  initialState,
+  userName,
+  showCancelBtn,
+  onSave,
+  onCancel,
+}) => {
+  const { form, setText, setRating } = useReviewForm(initialState);
 
   return (
     <form name="reviewForm" className={classNames(className, styles.root)}>
       <div className={mainStyles.form_group}>
         <label htmlFor="name">User name</label>
-        <input
-          name="name"
-          type="text"
-          disabled={true}
-          value={user?.name}
-          onChange={setName}
-        ></input>
+        <input name="name" type="text" disabled={true} value={userName}></input>
       </div>
       <div className={mainStyles.form_group}>
         <label htmlFor="text">Review text</label>
@@ -49,6 +47,14 @@ export const ReviewForm: React.FC<ReviewFormProps> = ({ className }) => {
           value={form.rating}
           onChange={setRating}
         ></input>
+      </div>
+      <div className={styles.buttons_container}>
+        {showCancelBtn && onCancel && (
+          <button className={mainStyles.outlined} onClick={() => onCancel()}>
+            Cancel
+          </button>
+        )}
+        <button onClick={() => onSave(form)}>Save</button>
       </div>
     </form>
   );

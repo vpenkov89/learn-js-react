@@ -11,8 +11,8 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onClose }) => {
   const { setUser } = useContext(UserContext);
   const form = useRef<HTMLFormElement>(null);
   const [isFormSubmitted, setFormSubmitted] = useState(false);
-  const [name, setName] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
+  const [name, setName] = useState<string>("Antony");
+  const [email, setEmail] = useState<string>("test@test.test");
 
   return (
     <>
@@ -69,7 +69,11 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onClose }) => {
           onClick={() => {
             setFormSubmitted(true);
             if (form.current?.checkValidity()) {
-              setUser({ id: "", name: String(name), email: String(name) });
+              setUser({
+                id: "a304959a-76c0-4b34-954a-b38dbf310360",
+                name: String(name),
+                email: String(name),
+              });
               onClose();
             }
           }}

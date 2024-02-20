@@ -1,6 +1,6 @@
 import { IRestaurant } from "../../types";
 import { MenuContainer } from "../menu/menu-container";
-import { ReviewForm } from "../review-form/review-form";
+import { CreateReviewFormContainer } from "../review-form/create-review-form-container";
 import { ReviewsContainer } from "../reviews/reviews-container";
 import styles from "./styles.module.scss";
 
@@ -16,7 +16,7 @@ export const Restaurant: React.FC<RestaurantProps> = ({ restaurant }) => {
       <MenuContainer restaurantId={restaurant.id}></MenuContainer>
       <h3>Reviews</h3>
       <ReviewsContainer restaurantId={restaurant.id}></ReviewsContainer>
-      <ReviewForm className={styles.review_section} />
+      <CreateReviewFormContainer className={styles.review_section} restaurantId={restaurant.id} />
     </div>
   );
 };
