@@ -13,9 +13,8 @@
     margin: 0 0 5px 25px;
   }
 
-  .review_section {
-    margin-left: 2em;
-    padding: 1em;
-    border: dotted 2px $section-border;
+  .buttons {
+    display: flex;
+    column-gap: 0.3em;
   }
 }

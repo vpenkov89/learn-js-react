@@ -3,6 +3,12 @@
 .root {
   .content {
     min-height: 83.7vh;
+    max-width: 50%;
+    margin: 0 auto;
+    background-color: $bg-primary;
+    color: $text-primary;
+    padding: 1rem 2rem;
+    border-radius: 0.7em;
   }
 
   .popover_container {

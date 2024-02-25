@@ -15,15 +15,6 @@ export const EditReviewFormContainer: React.FC<
 > = ({ className, review, user, onUpdateFinished }) => {
   const [updateReview, { isLoading, isSuccess }] = useUpdateReviewMutation();
 
-  // const { data: user } = useGetUsersQuery(undefined, {
-  //   selectFromResult: (result) => ({
-  //     ...result,
-  //     data: result.data?.find(
-  //       (restaurantItem) => review.userId === restaurantItem.id
-  //     ),
-  //   }),
-  // });
-
   useEffect(() => {
     if (isSuccess) {
       onUpdateFinished();

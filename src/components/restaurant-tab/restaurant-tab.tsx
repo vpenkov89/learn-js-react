@@ -1,25 +1,22 @@
 import mainStyles from "../../styles/main.module.scss";
 import classNames from "classnames";
-import { SelectedRestaurantContext } from "../../contexts/selected-restaurant";
-import { useContext } from "react";
 import { IRestaurant } from "../../types";
 
 type RestaurantTabProps = {
   restaurant: IRestaurant;
+  isActive: boolean;
 };
 
-export const RestaurantTab: React.FC<RestaurantTabProps> = ({ restaurant }) => {
-  const { selectedRestaurantId, setSelectedRestaurantId } = useContext(
-    SelectedRestaurantContext
-  );
-
+export const RestaurantTab: React.FC<RestaurantTabProps> = ({
+  restaurant,
+  isActive,
+}) => {
   return (
     <button
       key={restaurant.id}
       className={classNames({
-        [mainStyles.selected]: restaurant.id === selectedRestaurantId,
+        [mainStyles.selected]: isActive,
       })}
-      onClick={() => setSelectedRestaurantId(restaurant.id)}
     >
       {restaurant.name}
     </button>

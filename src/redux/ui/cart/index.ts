@@ -30,6 +30,9 @@ export const cartSlice = createSlice({
         }
       }
     },
+    clearCart: (state) => {
+      Object.keys(state).forEach((key: string) => delete state[key]);
+    },
   },
   selectors: {
     // state - состояние данного слайса
@@ -62,4 +65,4 @@ export const cartSlice = createSlice({
 export const { selectDishesAmountById } = cartSlice.selectors;
 export const { selectTotalDishesAmount } = cartSlice.selectors;
 export const { selectCartDishesByRestaurantIds } = cartSlice.selectors;
-export const { setAmount } = cartSlice.actions;
+export const { setAmount, clearCart } = cartSlice.actions;
