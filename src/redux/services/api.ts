@@ -33,6 +33,11 @@ export const api = createApi({
         url: `dishes?restaurantId=${restaurantId}`,
       }),
     }),
+    getDishById: builder.query<IDish, string>({
+      query: (dishId: string) => ({
+        url: `dish/${dishId}`,
+      }),
+    }),
     getReviewsByRestaurantId: builder.query<IReview[], string>({
       query: (restaurantId: string) => ({
         url: "reviews",
@@ -71,6 +76,7 @@ export const api = createApi({
 
 export const {
   useGetRestaurantsQuery,
+  useGetDishByIdQuery,
   useGetDishesByRestaurantIdQuery,
   useGetReviewsByRestaurantIdQuery,
   useCreateReviewMutation,

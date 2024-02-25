@@ -1,17 +1,25 @@
 import styles from "./styles.module.scss";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../contexts/user";
 import classNames from "classnames";
 import mainStyles from "../../styles/main.module.scss";
 import { LoginForm } from "../login-form/login-form";
 import { Modal } from "../modal/modal";
 import { CartButtonContainer } from "../cart-button/cart-button-container";
+import { useDispatch } from "react-redux";
+import { clearCart } from "../../redux/ui/cart";
 
 export const LoginControl: React.FC<unknown> = () => {
   const { user, setUser } = useContext(UserContext);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
   const closeModal = () => setIsModalOpen(false);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!user) {
+      dispatch(clearCart());
+    }
+  }, [dispatch, user]);
 
   return (
     <>

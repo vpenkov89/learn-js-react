@@ -1,15 +1,11 @@
 import { Menu } from "./menu";
 import { useGetDishesByRestaurantIdQuery } from "../../redux/services/api";
+import { useParams } from "react-router-dom";
 
-type MenuContainerProps = {
-  restaurantId: string;
-};
-
-export const MenuContainer: React.FC<MenuContainerProps> = ({
-  restaurantId,
-}) => {
+export const MenuContainer: React.FC<unknown> = () => {
+  const { restaurantId } = useParams();
   const { data: dishes, isFetching } =
-    useGetDishesByRestaurantIdQuery(restaurantId);
+    useGetDishesByRestaurantIdQuery(restaurantId!);
 
   if (isFetching) {
     return <div>Loading...</div>;
@@ -19,5 +15,5 @@ export const MenuContainer: React.FC<MenuContainerProps> = ({
     return null;
   }
 
-  return <Menu restaurantId={restaurantId} dishes={dishes} />;
+  return <Menu restaurantId={restaurantId!} dishes={dishes} />;
 };

@@ -1,15 +1,14 @@
-import { useContext } from "react";
-import { SelectedRestaurantContext } from "../../contexts/selected-restaurant";
 import { Restaurant } from "./restaurant";
 import { useGetRestaurantsQuery } from "../../redux/services/api";
+import { useParams } from "react-router-dom";
 
 export const RestaurantContainer: React.FC<unknown> = () => {
-  const { selectedRestaurantId } = useContext(SelectedRestaurantContext);
+  const { restaurantId } = useParams();
   const { data: restaurant, isLoading } = useGetRestaurantsQuery(undefined, {
     selectFromResult: (result) => ({
       ...result,
       data: result.data?.find(
-        (restaurantItem) => selectedRestaurantId === restaurantItem.id
+        (restaurantItem) => restaurantId === restaurantItem.id
       ),
     }),
   });
@@ -23,4 +22,3 @@ export const RestaurantContainer: React.FC<unknown> = () => {
 
   return <Restaurant restaurant={restaurant} />;
 };
-
